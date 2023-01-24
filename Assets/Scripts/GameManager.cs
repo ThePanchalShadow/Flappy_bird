@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
+        gameHasEnded = false;
         SceneManager.LoadScene(0);
     }
 }

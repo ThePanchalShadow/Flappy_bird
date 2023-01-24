@@ -4,38 +4,49 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
+    #region Variables
+    public Animator PlayerAnim;
     [SerializeField] private Rigidbody2D player;
     [SerializeField] private float thrust = 3f;
     [SerializeField]bool isAndroid= false;
-    bool gameStarted = false;
+    [SerializeField]bool gameStarted = false;
+    #endregion
 
+    private void Start()
+    {
+        Time.timeScale = 0;
+    }
     private void Update()
     {
-        
-        if (gameStarted)
+
+        if (Time.timeScale == 1)
         {
-            if(isAndroid)
+            if (isAndroid)
             {
-                if(Input.touchCount>0)
+                if (Input.touchCount > 0)
                 {
                     jump();
                 }
             }
-            else
+            else if (Input.GetKeyDown(KeyCode.W))
             {
-                if(Input.GetKeyDown(KeyCode.W))
-                {
-                    jump();
-                }
+                jump();
+            }
+            
+        }
+        else if (Input.touchCount > 0 || Input.GetKey(KeyCode.W))
+        {
+            if (!gameStarted)
+            {
+                gameStarted = true;
+                Time.timeScale = 1;
             }
         }
-        else if(Input.touchCount>0) gameStarted= true;
     }
 
     void jump()
     {
-        animator.SetTrigger("Fly");
+        PlayerAnim.SetTrigger("Fly");
         player.velocity = new Vector2(0, thrust);
     }
 
