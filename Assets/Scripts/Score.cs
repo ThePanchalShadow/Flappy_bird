@@ -8,16 +8,13 @@ public class Score : MonoBehaviour
 {
     #region Variables
     [Header("Vlaues")]
+    public float speed = 1;
     [SerializeField] int score = 0;
     [SerializeField] int Checkscore;
     [SerializeField] int Coins = 0;
     [SerializeField] int TotalCoins=0;
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text coinsText;
-    
-    [Space]
-    [Header("Scripts")]
-    [SerializeField] private ControlThePipes _controlThePipes;
     #endregion
 
     //To get Last Stored TotalCoins
@@ -51,19 +48,18 @@ public class Score : MonoBehaviour
     {
         //Increasing Speed every 2 Score
         Checkscore = 0;
-        float speed = _controlThePipes.speed;
+        //float speed = _controlThePipes.speed;
         if (score % 2 == 0)
         {
             Checkscore = score - score / 2;
             if (Checkscore >= 2)
             {
-                _controlThePipes.speed += 2f;
+                speed += 0.3f;
+            }
+            else if(score == 2)
+            {
+                speed = speed + 0.3f;
             }
         }
-        else if(score == 2)
-        {
-            speed = speed + 2;
-        }
-        _controlThePipes.speed = speed;
     }
 }

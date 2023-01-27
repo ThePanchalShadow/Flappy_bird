@@ -11,6 +11,10 @@ public class SpawnPipes : MonoBehaviour
     [SerializeField] float SpawnX;
     [SerializeField] float timeSpent;
     [SerializeField] float resetTime;
+
+    [Space]
+    [Header("Scripts")]
+    [SerializeField] Score score;
     #endregion
 
     private void FixedUpdate()
@@ -30,7 +34,7 @@ public class SpawnPipes : MonoBehaviour
             //timespent will be reset to 0
             timeSpent = 0;
             //Amount of seconds that will decide when to spawn next Object
-            resetTime = Random.Range(3f, 5f);
+            resetTime = Random.Range(5f/score.speed, 7f/score.speed);
             //spawning the Pipes
             spawnPipes();
         }

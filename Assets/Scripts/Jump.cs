@@ -5,11 +5,16 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
     #region Variables
-    public Animator PlayerAnim;
-    [SerializeField] private Rigidbody2D player;
+    [Header("Values")]
     [SerializeField] private float thrust = 3f;
     [SerializeField]bool isAndroid= false;
     [SerializeField]bool gameStarted = false;
+
+    [Space]
+    [Header("Objects")]
+    [SerializeField] Animator PlayerAnim;
+    [SerializeField] private Rigidbody2D player;
+    //[SerializeField] AudioSource Fly;
     #endregion
 
     private void Start()
@@ -25,11 +30,13 @@ public class Jump : MonoBehaviour
             {
                 if (Input.touchCount > 0)
                 {
+                    //Fly.Play();
                     jump();
                 }
             }
             else if (Input.GetKeyDown(KeyCode.W))
             {
+                //Fly.Play();
                 jump();
             }
             

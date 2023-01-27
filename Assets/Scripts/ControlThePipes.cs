@@ -6,19 +6,17 @@ using UnityEngine;
 
 public class ControlThePipes : MonoBehaviour
 {
-    public float speed = 3f;
     private float OutOfBound = -10;
-    // Update is called once per frame
-
-    private void Start()
-    {
-        speed = 3f;
-    }
+    Score score;
+    GameObject playerHolder; 
+    
     void LateUpdate()
     {
-        Debug.Log(speed);
+        playerHolder = GameObject.FindGameObjectWithTag("Player");
+        score = playerHolder.GetComponent<Score>();
         //it will continuosly moe the pipes with speed amount
-        transform.Translate(Vector3.left * speed * Time.deltaTime);
+        transform.Translate(Vector3.left * score.speed * Time.deltaTime);
+
         //if pipes go outside certain x vaule of their position they will be destroyed
         if (transform.position.x < OutOfBound)
         {
